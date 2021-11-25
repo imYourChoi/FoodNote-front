@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Dropdown } from 'react-bootstrap';
 import './Header.css';
 import logo from '../logo.svg';
 
@@ -8,16 +8,23 @@ const Header = (props) => {
   if (props.selected === 'list')
     links = (
       <>
-        {/* <NavDropdown title="방문 기록" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/list" className="selectedMenu">
-            방문 기록: 리스트
-          </NavDropdown.Item>
-          <NavDropdown.Item href="/calendar">방문 기록: 달력</NavDropdown.Item>
-        </NavDropdown> */}
-        <Nav.Link href="/list" className="selectedMenu">
-          방문 기록: 리스트
-        </Nav.Link>
-        <Nav.Link href="/calendar">방문 기록: 달력</Nav.Link>
+        <Dropdown>
+          <Dropdown.Toggle
+            bsPrefix="p"
+            variant="link"
+            className="selectedMenu navBut"
+          >
+            방문 기록
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/list" className="selectedItem">
+              방문 기록: <b>리스트</b>
+            </Dropdown.Item>
+            <Dropdown.Item href="/calendar" className="unselectedItem">
+              방문 기록: <b>달력</b>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Nav.Link href="/add">추가하기</Nav.Link>
         <Nav.Link href="/search">검색하기</Nav.Link>
       </>
@@ -25,10 +32,23 @@ const Header = (props) => {
   else if (props.selected === 'calendar')
     links = (
       <>
-        <Nav.Link href="/list">방문 기록: 리스트</Nav.Link>
-        <Nav.Link href="/calendar" className="selectedMenu">
-          방문 기록: 달력
-        </Nav.Link>
+        <Dropdown>
+          <Dropdown.Toggle
+            bsPrefix="p"
+            variant="link"
+            className="selectedMenu navBut"
+          >
+            방문 기록
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/list" className="selectedItem">
+              방문 기록: <b>리스트</b>
+            </Dropdown.Item>
+            <Dropdown.Item href="/calendar" className="unselectedItem">
+              방문 기록: <b>달력</b>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Nav.Link href="/add">추가하기</Nav.Link>
         <Nav.Link href="/search">검색하기</Nav.Link>
       </>
@@ -36,8 +56,23 @@ const Header = (props) => {
   else if (props.selected === 'add')
     links = (
       <>
-        <Nav.Link href="/list">방문 기록: 리스트</Nav.Link>
-        <Nav.Link href="/calendar">방문 기록: 달력</Nav.Link>
+        <Dropdown>
+          <Dropdown.Toggle
+            bsPrefix="p"
+            variant="link"
+            className="unselectedMenu navBut"
+          >
+            방문 기록
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/list" className="unselectedItem">
+              방문 기록: <b>리스트</b>
+            </Dropdown.Item>
+            <Dropdown.Item href="/calendar" className="unselectedItem">
+              방문 기록: <b>달력</b>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Nav.Link href="/add" className="selectedMenu">
           추가하기
         </Nav.Link>
@@ -47,8 +82,23 @@ const Header = (props) => {
   else
     links = (
       <>
-        <Nav.Link href="/list">방문 기록: 리스트</Nav.Link>
-        <Nav.Link href="/calendar">방문 기록: 달력</Nav.Link>
+        <Dropdown>
+          <Dropdown.Toggle
+            bsPrefix="p"
+            variant="link"
+            className="unselectedMenu navBut"
+          >
+            방문 기록
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/list" className="unselectedItem">
+              방문 기록: <b>리스트</b>
+            </Dropdown.Item>
+            <Dropdown.Item href="/calendar" className="unselectedItem">
+              방문 기록: <b>달력</b>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Nav.Link href="/add">추가하기</Nav.Link>
         <Nav.Link href="/search" className="selectedMenu">
           검색하기
@@ -56,7 +106,7 @@ const Header = (props) => {
       </>
     );
   return (
-    <Navbar fixed="top" bg="light" expand="lg" className="header">
+    <Navbar fixed="top" bg="light" expand="sm" className="header">
       <Container>
         <Navbar.Brand href="/" className="logo">
           <img
@@ -67,8 +117,8 @@ const Header = (props) => {
             className="d-inline-block align-top"
           />{' '}
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="headertext">{links}</Nav>
         </Navbar.Collapse>
       </Container>

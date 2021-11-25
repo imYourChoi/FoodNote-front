@@ -1,0 +1,8 @@
+.bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.35)),
+    url('../Background.png');
+  background-size: cover;
+  width: 100vw;
+  height: 350px;
+  padding-top: 50px;
+}
