@@ -1,11 +1,19 @@
 import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import './Header.css';
+import logo from '../logo.svg';
 
 const Header = (props) => {
   var links;
   if (props.selected === 'list')
     links = (
       <>
+        {/* <NavDropdown title="방문 기록" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/list" className="selectedMenu">
+            방문 기록: 리스트
+          </NavDropdown.Item>
+          <NavDropdown.Item href="/calendar">방문 기록: 달력</NavDropdown.Item>
+        </NavDropdown> */}
         <Nav.Link href="/list" className="selectedMenu">
           방문 기록: 리스트
         </Nav.Link>
@@ -48,8 +56,22 @@ const Header = (props) => {
       </>
     );
   return (
-    <Navbar>
-      <Nav className="me-auto">{links}</Nav>
+    <Navbar fixed="top" bg="light" expand="lg" className="header">
+      <Container>
+        <Navbar.Brand href="/" className="logo">
+          <img
+            alt=""
+            src={logo}
+            width="118"
+            height="27"
+            className="d-inline-block align-top"
+          />{' '}
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="headertext">{links}</Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };
