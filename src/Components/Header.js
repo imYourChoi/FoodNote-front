@@ -41,10 +41,10 @@ const Header = (props) => {
             방문 기록
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href="/list" className="selectedItem">
+            <Dropdown.Item href="/list" className="unselectedItem">
               방문 기록: <b>리스트</b>
             </Dropdown.Item>
-            <Dropdown.Item href="/calendar" className="unselectedItem">
+            <Dropdown.Item href="/calendar" className="selectedItem">
               방문 기록: <b>달력</b>
             </Dropdown.Item>
           </Dropdown.Menu>
