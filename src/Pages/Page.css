@@ -22,7 +22,7 @@
 }
 
 input {
-  width: 300px;
+  width: 275px;
   height: 39px;
   margin-bottom: 15px;
   background-color: #eeeeee;
@@ -64,9 +64,10 @@ input[type='text' i] {
 }
 
 .calendar {
-  width: 285px;
-  height: 250px;
+  width: 310px;
+  /* height: 275px; */
   border-radius: 8px;
   background-color: #eeeeee;
   color: #323232;
+  padding: 10px;
 }

@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
-import FullCalendar from '../Components/FullCalendar';
+import AddCalendar from '../Components/AddCalendar';
 
 import './Page.css';
 import '../App.css';
@@ -50,7 +50,7 @@ const Add = () => {
             <div className="column">
               <div className="subtitle">날짜</div>
               <div className="calendar">
-                <FullCalendar />
+                <AddCalendar />
               </div>
             </div>
           </div>
