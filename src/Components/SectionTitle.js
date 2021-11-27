@@ -2,7 +2,6 @@ import React from 'react';
 import '../App.css';
 
 const SectionTitle = (props) => {
-  console.log(props.props);
   return (
     <div
       style={{

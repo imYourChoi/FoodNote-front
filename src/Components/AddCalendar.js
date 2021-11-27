@@ -4,36 +4,24 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import './AddCalendar.css';
 
-const Calendar = () => {
-  // var dayGridPlugin = createPlugin({
-  //   initialView: 'dayGridMonth',
-  //   // optionRefiners: OPTION_REFINERS$1,
-  //   views: {
-  //     dayGridMonth: {
-  //       type: 'dayGrid',
-  //       duration: { months: 1 },
-  //       monthMode: true,
-  //       fixedWeekCount: true,
-  //     },
-  //   },
-  // });
-
+const Calendar = (props) => {
+  const { addDate, setAddDate } = props;
+  const handleDateClick = (arg) => {
+    const tzoffset = new Date().getTimezoneOffset() * 60000;
+    const localISOTime = new Date(arg.date - tzoffset)
+      .toISOString()
+      .slice(0, -1)
+      .split('T')[0];
+    setAddDate(localISOTime);
+  };
   return (
     <FullCalendar
       plugins={[dayGridPlugin, interactionPlugin]}
       initialView="dayGridMonth"
-      // height="275px"
       fixedWeekCount={false}
-      // views= {
-      //   dayGridMonth= {[
-      //       {type: 'dayGrid'},
-      //       duration= { months: 1 },
-      //       monthMode= true,
-      //       fixedWeekCount= true,
-      //   ]},
-      // }
-
-      // showNonCurrentDates="true"
+      dateClick={handleDateClick}
+      selectable
+      showNonCurrentDates={false}
       // contentHeight="60px"
     />
   );

@@ -12,14 +12,14 @@ import '../App.css';
 const Add = () => {
   const [addRestaurant, setAddRestaurant] = useState('');
   const [addFood, setAddFood] = useState('');
-
-  // const onAddClick = () => {
-  //   // 추가 요청 전송
-  //   axios.post(`/api/todo`, {
-  //     name: addRestaurant,
-  //   });
-  // };
-
+  const [addDate, setAddDate] = useState(
+    new Date().toISOString().split('T')[0],
+  );
+  console.log(addDate);
+  const addData = () => {
+    var data = { restaurant: addRestaurant, food: addFood, date: addDate };
+    api.add(data);
+  };
   return (
     <>
       <Header selected="add" />
@@ -43,14 +43,14 @@ const Add = () => {
                 value={addFood}
                 onChange={(v) => setAddFood(v.target.value)}
               />
-              <button className="addButton" onClick={() => api.add()}>
+              <button className="addButton" onClick={addData}>
                 추가하기
               </button>
             </div>
             <div className="column">
               <div className="subtitle">날짜</div>
               <div className="calendar">
-                <AddCalendar />
+                <AddCalendar addDate={addDate} setAddDate={setAddDate} />
               </div>
             </div>
           </div>

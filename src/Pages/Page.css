@@ -65,7 +65,7 @@ input[type='text' i] {
 
 .calendar {
   width: 310px;
-  /* height: 275px; */
+  height: auto;
   border-radius: 8px;
   background-color: #eeeeee;
   color: #323232;
