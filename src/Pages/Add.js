@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
+import FullCalendar from '../Components/FullCalendar';
 
 import './Page.css';
 import '../App.css';
@@ -42,11 +43,15 @@ const Add = () => {
                 value={addFood}
                 onChange={(v) => setAddFood(v.target.value)}
               />
-              <button onClick={() => api.add()}>추가하기</button>
+              <button className="addButton" onClick={() => api.add()}>
+                추가하기
+              </button>
             </div>
             <div className="column">
               <div className="subtitle">날짜</div>
-              <div className="calendar">asd</div>
+              <div className="calendar">
+                <FullCalendar />
+              </div>
             </div>
           </div>
         </div>
