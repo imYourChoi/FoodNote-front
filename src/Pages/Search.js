@@ -6,7 +6,10 @@ const Search = () => {
   return (
     <>
       <Header selected="search" />
-      <Background />
+      <Background
+        title="검색하기"
+        subtitle="식당 혹은 드신 음식으로 검색해보세요."
+      />
       <div className="container">container</div>
     </>
   );
