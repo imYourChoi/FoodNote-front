@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 // 예를 들어 http://localhost:3000/api/list 로 들어온 요청은
 // http://localhost:8080/list 로 전달됩니다.
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.use(
     '/api',
     createProxyMiddleware({
