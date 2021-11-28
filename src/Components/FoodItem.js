@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 import './FoodItem.css';
 
 const FoodItem = (props) => {
@@ -11,9 +12,12 @@ const FoodItem = (props) => {
     <div className="foodItem">
       <div className="restaurant">{props.restaurant}</div>
       <div className="date">{props.date}</div>
+      <div className="food"> / {props.food}</div>
+      <div className="trash" onClick={props.onDeleteClick}>
+        <FaTrashAlt />
+      </div>
       <div className="dDay">
-        D{diffDays >= 0 ? '+' : ''}
-        {diffDays}
+        {diffDays >= 0 ? 'D+' + diffDays : 'D -' + Math.abs(diffDays)}
       </div>
 
       {/* <span style={{ textDecoration: props.done ? 'line-through' : 'none' }}>

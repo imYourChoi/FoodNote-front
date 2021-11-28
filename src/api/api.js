@@ -9,3 +9,6 @@ export const add = (data) => {
 };
 
 export const getAll = () => axios.get('/api/food');
+
+// eslint-disable-next-line no-underscore-dangle
+export const deleteOne = (item) => axios.delete(`api/food/${item._id}`);

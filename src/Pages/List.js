@@ -13,13 +13,21 @@ export default class List extends Component {
     this.sortAddItems = this.sortAddItems.bind(this);
     this.sortDescItems = this.sortDescItems.bind(this);
     this.sortAscItems = this.sortAscItems.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
     this.state = {
       items: [],
+      order: 'Add',
     };
   }
 
   componentDidMount() {
     this.retrieveFood();
+  }
+
+  onDeleteClick(v) {
+    console.log(v);
+    // console.log(this.state.items);
+    api.deleteOne(v).then(() => this.retrieveFood());
   }
 
   retrieveFood() {
@@ -47,6 +55,7 @@ export default class List extends Component {
     // });
     this.setState({
       items: sortedItem,
+      order: 'Add',
     });
   }
 
@@ -63,6 +72,7 @@ export default class List extends Component {
     // });
     this.setState({
       items: sortedItem,
+      order: 'Desc',
     });
   }
 
@@ -79,6 +89,7 @@ export default class List extends Component {
     // });
     this.setState({
       items: sortedItem,
+      order: 'Asc',
     });
   }
 
@@ -90,6 +101,7 @@ export default class List extends Component {
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
+        onDeleteClick={() => this.onDeleteClick(v)}
       />
     ));
     return (
@@ -107,21 +119,29 @@ export default class List extends Component {
               <div className="buttonGroup">
                 <button
                   type="button"
-                  className="orderButton"
+                  className={
+                    this.state.order === 'Add' ? 'clickedButton' : 'orderButton'
+                  }
                   onClick={this.sortAddItems}
                 >
                   추가순
                 </button>
                 <button
                   type="button"
-                  className="orderButton"
+                  className={
+                    this.state.order === 'Asc' ? 'clickedButton' : 'orderButton'
+                  }
                   onClick={this.sortAscItems}
                 >
                   오름차순
                 </button>
                 <button
                   type="button"
-                  className="orderButton"
+                  className={
+                    this.state.order === 'Desc'
+                      ? 'clickedButton'
+                      : 'orderButton'
+                  }
                   onClick={this.sortDescItems}
                 >
                   내림차순
