@@ -10,7 +10,9 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.retrieveFood = this.retrieveFood.bind(this);
-
+    this.sortAddItems = this.sortAddItems.bind(this);
+    this.sortDescItems = this.sortDescItems.bind(this);
+    this.sortAscItems = this.sortAscItems.bind(this);
     this.state = {
       items: [],
     };
@@ -20,7 +22,6 @@ export default class List extends Component {
     this.retrieveFood();
   }
 
-  // const [items, setItems] = useState([]);
   retrieveFood() {
     api
       .getAll()
@@ -33,10 +34,56 @@ export default class List extends Component {
       .catch((e) => console.log(e));
   }
 
+  sortAddItems() {
+    const item = this.state.items;
+    console.log(item);
+    const sortedItem = item.sort((a, b) => {
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    });
+    // console.log(item);
+    // console.log(v.context);
+    // this.setState({
+    //   items: this.items,
+    // });
+    this.setState({
+      items: sortedItem,
+    });
+  }
+
+  sortDescItems() {
+    const item = this.state.items;
+    console.log(item);
+    const sortedItem = item.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+    // console.log(item);
+    // console.log(v.context);
+    // this.setState({
+    //   items: this.items,
+    // });
+    this.setState({
+      items: sortedItem,
+    });
+  }
+
+  sortAscItems() {
+    const item = this.state.items;
+    console.log(item);
+    const sortedItem = item.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+    // console.log(item);
+    // console.log(v.context);
+    // this.setState({
+    //   items: this.items,
+    // });
+    this.setState({
+      items: sortedItem,
+    });
+  }
+
   render() {
     const { items } = this.state;
-    // this.retrieveFood();
-    console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodItem
         key={v.id}
@@ -45,7 +92,6 @@ export default class List extends Component {
         date={v.date}
       />
     ));
-
     return (
       <>
         <Header selected="list" />
@@ -59,19 +105,36 @@ export default class List extends Component {
             <div className="row">
               <div className="subtitle">목록</div>
               <div className="buttonGroup">
-                <button type="button" className="orderButton">
+                <button
+                  type="button"
+                  className="orderButton"
+                  onClick={this.sortAddItems}
+                >
+                  추가순
+                </button>
+                <button
+                  type="button"
+                  className="orderButton"
+                  onClick={this.sortAscItems}
+                >
                   오름차순
                 </button>
                 <button
                   type="button"
                   className="orderButton"
-                  onClick={this.retrieveFood}
+                  onClick={this.sortDescItems}
                 >
                   내림차순
                 </button>
               </div>
             </div>
-            {foodItemEls}
+            {items.length === 0 ? (
+              <div style={{ marginTop: '4px', fontSize: '14px' }}>
+                추가하신 방문 기록이 없습니다.
+              </div>
+            ) : (
+              foodItemEls
+            )}
             {/* </div> */}
           </div>
         </div>

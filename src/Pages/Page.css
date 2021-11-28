@@ -98,7 +98,7 @@ input[type='text' i] {
   flex-basis: auto;
   width: auto;
   padding-bottom: 9px;
-  padding-right: 8px;
+  padding-right: 0px;
 }
 
 .orderButton {
@@ -114,6 +114,6 @@ input[type='text' i] {
   /* margin-bottom: 8px; */
   border: none;
   border-radius: 6px;
-  padding: 1px 5px 1px 6px;
-  box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.25);
+  padding: 1px px 1px 6px;
+  box-shadow: 0px 2px 2px -1.5px rgba(0, 0, 0, 0.25);
 }

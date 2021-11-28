@@ -8,8 +8,4 @@ export const add = (data) => {
   });
 };
 
-export const getAll = async () => {
-  console.log();
-  // eslint-disable-next-line no-return-await
-  return await axios.get('/api/food');
-};
+export const getAll = () => axios.get('/api/food');
