@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import * as api from '../api/api';
 import Header from '../Components/Header';
@@ -15,12 +16,34 @@ const Add = () => {
   const [addDate, setAddDate] = useState(
     new Date().toISOString().split('T')[0],
   );
+  const [message, setMessage] = useState('');
+  const [messageColor, setMessageColor] = useState('#dd616e');
   console.log(addDate);
+
+  const history = useHistory();
+  const handleRoute = (path) => {
+    history.push(path);
+  };
   const addData = () => {
     var data = { restaurant: addRestaurant, food: addFood, date: addDate };
+    setMessageColor('#DD616E');
+    if (addRestaurant === '' && addFood === '') {
+      setMessage('식당과 음식을 입력해주세요.');
+      return;
+    }
+    if (addRestaurant === '') {
+      setMessage('식당을 입력해주세요.');
+      return;
+    }
+    if (addFood === '') {
+      setMessage('음식을 입력해주세요.');
+      return;
+    }
     api.add(data);
     setAddRestaurant('');
     setAddFood('');
+    setMessageColor('#23913C');
+    setMessage('성공적으로 추가하였습니다.');
   };
   return (
     <>
@@ -36,6 +59,8 @@ const Add = () => {
               <div className="subtitle">식당 이름</div>
               <input
                 type="text"
+                className="textInput"
+                placeholder="식당 이름을 입력해 주세요."
                 value={addRestaurant}
                 onChange={(v) => setAddRestaurant(v.target.value)}
               />
@@ -43,11 +68,26 @@ const Add = () => {
               <input
                 type="text"
                 value={addFood}
+                className="textInput"
+                placeholder="드신 음식을 입력해주세요."
                 onChange={(v) => setAddFood(v.target.value)}
               />
-              <button className="addButton" onClick={addData}>
-                추가하기
-              </button>
+              <div className="messageRow">
+                <div className="message" style={{ color: messageColor }}>
+                  {message}
+                </div>
+              </div>
+              <div className="buttonRow">
+                <button
+                  className="listButton"
+                  onClick={() => handleRoute('/list')}
+                >
+                  목록
+                </button>
+                <button className="addButton" onClick={addData}>
+                  추가하기
+                </button>
+              </div>
             </div>
             <div className="column">
               <div className="subtitle">날짜</div>
