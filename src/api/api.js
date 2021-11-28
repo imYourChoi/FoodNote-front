@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const add = (data) => {
-  axios.post('/api', {
+  axios.post('/api/food', {
     restaurant: data.restaurant,
     food: data.food,
     date: data.date,
@@ -9,5 +9,5 @@ export const add = (data) => {
 };
 
 export const getAll = () => {
-  axios.get('/api');
+  axios.get('/api/food');
 };

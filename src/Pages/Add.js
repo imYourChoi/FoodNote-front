@@ -19,6 +19,8 @@ const Add = () => {
   const addData = () => {
     var data = { restaurant: addRestaurant, food: addFood, date: addDate };
     api.add(data);
+    setAddRestaurant('');
+    setAddFood('');
   };
   return (
     <>
