@@ -14,7 +14,8 @@ const Add = () => {
   const [addRestaurant, setAddRestaurant] = useState('');
   const [addFood, setAddFood] = useState('');
   const [addDate, setAddDate] = useState(
-    new Date().toISOString().split('T')[0],
+    // new Date().toISOString().split('T')[0],
+    '',
   );
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('#dd616e');
@@ -27,21 +28,18 @@ const Add = () => {
   const addData = () => {
     var data = { restaurant: addRestaurant, food: addFood, date: addDate };
     setMessageColor('#DD616E');
-    if (addRestaurant === '' && addFood === '') {
-      setMessage('식당과 음식을 입력해주세요.');
+    if (addRestaurant === '' || addFood === '') {
+      setMessage('식당과 음식을 모두 입력해주세요.');
       return;
     }
-    if (addRestaurant === '') {
-      setMessage('식당을 입력해주세요.');
-      return;
-    }
-    if (addFood === '') {
-      setMessage('음식을 입력해주세요.');
+    if (addDate === '') {
+      setMessage('오른쪽 달력에서 날짜를 선택해주세요.');
       return;
     }
     api.add(data);
     setAddRestaurant('');
     setAddFood('');
+    setAddDate('');
     setMessageColor('#23913C');
     setMessage('성공적으로 추가하였습니다.');
   };
@@ -71,6 +69,15 @@ const Add = () => {
                 className="textInput"
                 placeholder="드신 음식을 입력해주세요."
                 onChange={(v) => setAddFood(v.target.value)}
+              />
+              <div className="subtitle">날짜</div>
+              <input
+                type="text"
+                value={addDate}
+                className="textInput"
+                placeholder="달력에서 날짜를 선택해주세요."
+                onChange={(v) => setAddDate(v.target.value)}
+                readOnly
               />
               <div className="messageRow">
                 <div className="message" style={{ color: messageColor }}>

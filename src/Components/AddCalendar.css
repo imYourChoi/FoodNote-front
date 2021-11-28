@@ -136,18 +136,19 @@ a {
 }
 
 .fc .fc-daygrid-day.fc-day-today {
-  background-color: rgba(230, 226, 175, 1);
-  border-radius: 8px;
+  background-color: #9e9e9e;
+  font-weight: 700;
+  border-radius: 10px;
 }
 
 .fc .fc-highlight {
-  width: 41px;
-  height: 40px;
+  width: 42px;
+  height: 41px;
   position: absolute;
-  background: rgba(167, 163, 126, 1);
-  top: -4px;
-  left: 0.5px;
-  border-radius: 8px;
+  background: rgba(230, 226, 175, 1);
+  top: -5px;
+  left: -0.5px;
+  border-radius: 10px;
 }
 
 .fc .fc-day-disabled {
