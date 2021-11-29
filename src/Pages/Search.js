@@ -129,9 +129,17 @@ export default class Search extends Component {
                 {items.length === 0 ? (
                   <div
                     style={{
-                      marginTop: '4px',
-                      marginLeft: '4px',
-                      fontSize: '14px',
+                      color: '#DD616E',
+                      width: '310px',
+                      height: '39px',
+                      borderRadius: '8px',
+                      // backgroundColor: '#eeeeee',
+                      borderStyle: 'solid',
+                      borderWidth: '1px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '10px 2px 11px 16px',
+                      // boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.25)',
                     }}
                   >
                     일치하는 검색 결과가 없습니다.
