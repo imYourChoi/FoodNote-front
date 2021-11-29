@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import * as api from '../api/api';
@@ -74,7 +73,7 @@ const Add = () => {
               <input
                 type="text"
                 value={addDate}
-                className="textInput"
+                className="dateInput"
                 placeholder="달력에서 날짜를 선택해주세요."
                 onChange={(v) => setAddDate(v.target.value)}
                 readOnly
@@ -84,7 +83,7 @@ const Add = () => {
                   {message}
                 </div>
               </div>
-              <div className="buttonRow">
+              <div className="addButtonRow">
                 <button
                   className="listButton"
                   onClick={() => handleRoute('/list')}

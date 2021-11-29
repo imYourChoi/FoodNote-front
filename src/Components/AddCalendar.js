@@ -5,7 +5,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import './AddCalendar.css';
 
 const Calendar = (props) => {
-  const { addDate, setAddDate } = props;
+  const { setAddDate } = props;
   const handleDateClick = (arg) => {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
     const localISOTime = new Date(arg.date - tzoffset)
@@ -14,13 +14,18 @@ const Calendar = (props) => {
       .split('T')[0];
     setAddDate(localISOTime);
   };
+  const handleDateSet = () => {
+    setAddDate('');
+  };
   return (
     <FullCalendar
       plugins={[dayGridPlugin, interactionPlugin]}
       initialView="dayGridMonth"
       fixedWeekCount={false}
       dateClick={handleDateClick}
+      datesSet={handleDateSet}
       selectable
+      unselectAuto={false}
       showNonCurrentDates={false}
       // contentHeight="60px"
     />

@@ -4,8 +4,9 @@ import './Header.css';
 import logo from '../logo.svg';
 
 const Header = (props) => {
+  const { selected } = props;
   var links;
-  if (props.selected === 'list')
+  if (selected === 'list')
     links = (
       <>
         <Dropdown>
@@ -29,7 +30,7 @@ const Header = (props) => {
         <Nav.Link href="/search">검색하기</Nav.Link>
       </>
     );
-  else if (props.selected === 'calendar')
+  else if (selected === 'calendar')
     links = (
       <>
         <Dropdown>
@@ -53,7 +54,7 @@ const Header = (props) => {
         <Nav.Link href="/search">검색하기</Nav.Link>
       </>
     );
-  else if (props.selected === 'add')
+  else if (selected === 'add')
     links = (
       <>
         <Dropdown>

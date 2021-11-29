@@ -1,10 +1,9 @@
-import React, { useEffect, useState, Component } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
-import FoodItem from '../Components/FoodItem';
+import FoodList from '../Components/FoodList';
 
 export default class List extends Component {
   constructor(props) {
@@ -48,11 +47,6 @@ export default class List extends Component {
     const sortedItem = item.sort((a, b) => {
       return new Date(a.createdAt) - new Date(b.createdAt);
     });
-    // console.log(item);
-    // console.log(v.context);
-    // this.setState({
-    //   items: this.items,
-    // });
     this.setState({
       items: sortedItem,
       order: 'Add',
@@ -96,7 +90,7 @@ export default class List extends Component {
   render() {
     const { items } = this.state;
     const foodItemEls = items.map((v) => (
-      <FoodItem
+      <FoodList
         key={v.id}
         restaurant={v.restaurant}
         food={v.food}
@@ -120,7 +114,9 @@ export default class List extends Component {
                 <button
                   type="button"
                   className={
-                    this.state.order === 'Add' ? 'clickedButton' : 'orderButton'
+                    this.state.order === 'Add'
+                      ? 'clickedOrderButton'
+                      : 'orderButton'
                   }
                   onClick={this.sortAddItems}
                 >
@@ -129,7 +125,9 @@ export default class List extends Component {
                 <button
                   type="button"
                   className={
-                    this.state.order === 'Asc' ? 'clickedButton' : 'orderButton'
+                    this.state.order === 'Asc'
+                      ? 'clickedOrderButton'
+                      : 'orderButton'
                   }
                   onClick={this.sortAscItems}
                 >
@@ -139,7 +137,7 @@ export default class List extends Component {
                   type="button"
                   className={
                     this.state.order === 'Desc'
-                      ? 'clickedButton'
+                      ? 'clickedOrderButton'
                       : 'orderButton'
                   }
                   onClick={this.sortDescItems}
@@ -149,7 +147,13 @@ export default class List extends Component {
               </div>
             </div>
             {items.length === 0 ? (
-              <div style={{ marginTop: '4px', fontSize: '14px' }}>
+              <div
+                style={{
+                  marginTop: '4px',
+                  marginLeft: '4px',
+                  fontSize: '14px',
+                }}
+              >
                 추가하신 방문 기록이 없습니다.
               </div>
             ) : (
