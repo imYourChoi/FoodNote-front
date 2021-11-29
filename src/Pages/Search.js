@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 
@@ -11,19 +12,21 @@ export default class Search extends Component {
     super(props);
     this.retrieveFood = this.retrieveFood.bind(this);
     this.updateFood = this.updateFood.bind(this);
-    // this.recommendWord = this.recommendWord.bind(this);
+    this.recommendWord = this.recommendWord.bind(this);
     this.onCategoryClick = this.onCategoryClick.bind(this);
     this.state = {
       allItems: [],
       items: [],
       searchWord: '',
       category: '',
+      recommend: [],
     };
   }
 
   componentDidMount() {
     this.retrieveFood();
     this.updateFood();
+    this.recommendWord();
   }
 
   onDeleteClick(v) {
@@ -75,13 +78,38 @@ export default class Search extends Component {
       .catch((e) => console.log(e));
   }
 
-  // recommendWord() {
-  //   const list = this.state.allItems;
-  // }
+  recommendWord() {
+    api.getAll().then((response) => {
+      const list = response.data;
+      const getWords = (item, index, arr) => {
+        arr[index] = [item.food, item.restaurant];
+      };
+      const getOne = (item, index, arr) => {
+        // const { food, restaurant } = item;
+        if (this.state.category === '음식') {
+          arr[index] = item[0];
+        } else if (this.state.category === '식당') {
+          arr[index] = item[1];
+        } else {
+          arr[index] = item[Math.round(Math.random())];
+        }
+      };
+      list.forEach(getWords);
+      console.log(list);
+      const shuffled = list.sort(() => 0.5 - Math.random());
+      const recs = shuffled.slice(
+        0,
+        Math.ceil(shuffled.length / 2) > 5 ? 5 : Math.ceil(shuffled.length / 2),
+      );
+      recs.forEach(getOne);
+      console.log(recs);
+      this.setState({ recommend: recs });
+    });
+    // .catch((e) => console.log(e));
+  }
 
   render() {
     const { allItems, items, searchWord, category } = this.state;
-    console.log(allItems);
     const foodItemEls = (items.length === 0 ? allItems : items).map((v) => (
       <FoodSearch
         key={v.id}
@@ -120,7 +148,10 @@ export default class Search extends Component {
                         ? 'selectedCategoryButton'
                         : 'categoryButton'
                     }
-                    onClick={(v) => this.onCategoryClick(v)}
+                    onClick={(v) => {
+                      this.onCategoryClick(v);
+                      this.recommendWord();
+                    }}
                   >
                     식당
                   </button>
@@ -130,7 +161,10 @@ export default class Search extends Component {
                         ? 'selectedCategoryButton'
                         : 'categoryButton'
                     }
-                    onClick={(v) => this.onCategoryClick(v)}
+                    onClick={(v) => {
+                      this.onCategoryClick(v);
+                      this.recommendWord();
+                    }}
                   >
                     음식
                   </button>
@@ -143,6 +177,18 @@ export default class Search extends Component {
                   </button>
                 </div>
                 <div className="subtitle">추천 키워드</div>
+                <div className="recWordRow">
+                  {this.state.recommend.map((item) => (
+                    <div
+                      className="recWord"
+                      onClick={(v) =>
+                        this.setState({ searchWord: v.target.innerText })
+                      }
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="column">
                 <div className="subtitle">검색 결과</div>
