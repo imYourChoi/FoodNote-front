@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import * as api from '../api/api';
 import Header from '../Components/Header';
@@ -9,7 +8,7 @@ import AddCalendar from '../Components/AddCalendar';
 import './Page.css';
 import '../App.css';
 
-const Add = () => {
+const Add = (props) => {
   const [addRestaurant, setAddRestaurant] = useState('');
   const [addFood, setAddFood] = useState('');
   const [addDate, setAddDate] = useState(
@@ -20,7 +19,7 @@ const Add = () => {
   const [messageColor, setMessageColor] = useState('#DD616E');
   console.log(addDate);
 
-  const history = useHistory();
+  const { history } = props;
   const handleRoute = (path) => {
     history.push(path);
   };

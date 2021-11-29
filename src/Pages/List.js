@@ -26,6 +26,10 @@ class List extends Component {
     this.retrieveFood();
   }
 
+  handleClick() {
+    this.props.history.push('/add');
+  }
+
   onDeleteClick(v) {
     api.deleteOne(v).then(() => this.retrieveFood());
   }
@@ -178,8 +182,8 @@ class List extends Component {
             )}
             <button
               type="button"
-              className="addButton"
-              // onClick={() => this.handleRoute('/add')}
+              className="addRouteButton"
+              onClick={() => this.handleClick()}
             >
               추가하기
             </button>

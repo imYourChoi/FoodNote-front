@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -10,6 +10,7 @@ import List from './Pages/List';
 import Search from './Pages/Search';
 
 const App = () => {
+  const history = useHistory();
   return (
     <BrowserRouter>
       <div>

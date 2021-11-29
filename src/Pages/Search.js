@@ -85,7 +85,6 @@ export default class Search extends Component {
         arr[index] = [item.food, item.restaurant];
       };
       const getOne = (item, index, arr) => {
-        // const { food, restaurant } = item;
         if (this.state.category === '음식') {
           arr[index] = item[0];
         } else if (this.state.category === '식당') {
@@ -95,14 +94,12 @@ export default class Search extends Component {
         }
       };
       list.forEach(getWords);
-      console.log(list);
       const shuffled = list.sort(() => 0.5 - Math.random());
       const recs = shuffled.slice(
         0,
         Math.ceil(shuffled.length / 2) > 5 ? 5 : Math.ceil(shuffled.length / 2),
       );
       recs.forEach(getOne);
-      console.log(recs);
       this.setState({ recommend: recs });
     });
     // .catch((e) => console.log(e));

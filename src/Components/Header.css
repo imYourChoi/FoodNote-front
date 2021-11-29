@@ -48,12 +48,16 @@
   color: #ffffff;
   text-decoration: none;
   /* background-color: #0d6efd; */
-  background-color: #666666;
+  background-color: var(--prime-color);
   text-decoration-color: #ffffff;
   text-decoration: underline;
   text-decoration-thickness: 0.5px;
   text-underline-offset: 4px;
   transition: 0.1s all;
+}
+
+.dropdown-item {
+  padding: 6px 16px;
 }
 
 .navBut {
