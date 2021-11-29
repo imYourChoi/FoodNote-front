@@ -11,6 +11,7 @@ export default class Search extends Component {
     this.retrieveFood = this.retrieveFood.bind(this);
     this.onCategoryClick = this.onCategoryClick.bind(this);
     this.state = {
+      allItems: [],
       items: [],
       searchWord: '',
       category: '',
@@ -18,7 +19,7 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.items);
+    this.retrieveFood();
   }
 
   onDeleteClick(v) {
@@ -28,7 +29,25 @@ export default class Search extends Component {
   }
 
   onCategoryClick(v) {
-    this.setState({ category: v.target.innerText });
+    if (this.state.category === v.target.innerText) {
+      this.setState({ category: '' });
+    } else {
+      this.setState({ category: v.target.innerText });
+    }
+  }
+
+  onSearchClick(word) {
+    const checkItem = (name) => {
+      if (this.state.category === '식당') {
+        return name.restaurant.includes(word);
+      }
+      if (this.state.category === '음식') {
+        return name.food.includes(word);
+      }
+      return name.food.includes(word) || name.restaurant.includes(word);
+    };
+    const item = this.state.allItems.filter(checkItem);
+    this.setState({ items: item });
   }
 
   retrieveFood() {
@@ -36,7 +55,7 @@ export default class Search extends Component {
       .getAll()
       .then((response) => {
         this.setState({
-          items: response.data,
+          allItems: response.data,
         });
       })
       .catch((e) => console.log(e));
@@ -95,6 +114,12 @@ export default class Search extends Component {
                     onClick={(v) => this.onCategoryClick(v)}
                   >
                     음식
+                  </button>
+                  <button
+                    className="searchButton"
+                    onClick={() => this.onSearchClick(searchWord)}
+                  >
+                    검색하기
                   </button>
                 </div>
                 <div className="subtitle">추천 키워드</div>
