@@ -27,7 +27,6 @@ class List extends Component {
   }
 
   onDeleteClick(v) {
-    console.log(v);
     api.deleteOne(v).then(() => this.retrieveFood());
   }
 
@@ -35,7 +34,6 @@ class List extends Component {
     api
       .getAll()
       .then((response) => {
-        console.log(response.data);
         this.setState({
           items: response.data,
         });
@@ -45,7 +43,6 @@ class List extends Component {
 
   sortAddItems() {
     const item = this.state.items;
-    console.log(item);
     const sortedItem = item.sort((a, b) => {
       return new Date(a.createdAt) - new Date(b.createdAt);
     });
@@ -57,7 +54,6 @@ class List extends Component {
 
   sortDescItems() {
     const item = this.state.items;
-    console.log(item);
     const sortedItem = item.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
@@ -69,7 +65,6 @@ class List extends Component {
 
   sortAscItems() {
     const item = this.state.items;
-    console.log(item);
     const sortedItem = item.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });
@@ -81,9 +76,9 @@ class List extends Component {
 
   sortAbcItems() {
     const item = this.state.items;
-    console.log(item);
-    const sortedItem = item.sort();
-    console.log(sortedItem);
+    const sortedItem = item.sort((a, b) => {
+      return a.restaurant > b.restaurant ? 1 : -1;
+    });
     this.setState({
       items: sortedItem,
       order: 'Abc',
@@ -92,7 +87,6 @@ class List extends Component {
 
   render() {
     const { items } = this.state;
-    console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodList
         id={v._id}
