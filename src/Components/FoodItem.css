@@ -10,7 +10,7 @@
 }
 
 .foodResult {
-  width: 310px;
+  width: 336px;
   height: 39px;
   background-color: #efecca;
   border-radius: 8px;
@@ -42,24 +42,30 @@
 }
 
 .trash {
-  margin: 13.5px 10px 15.5px auto;
+  margin: 12px 10px 11px auto;
+  height: 16px;
 }
 
 .trash svg {
+  margin-top: -10px;
   fill: #a7a37e;
   height: 12px;
-}
-
-.trash {
   cursor: pointer;
 }
 
-.trash svg:hover {
-  /* fill: var(--prime-color); */
-  /* fill: #9e9e9e; */
-  fill: #dd616e;
+.trash:hover {
+  left: 4px;
+  height: 18px;
   border-style: solid;
+  border-radius: 2px;
+  border-color: #dd616e;
   border-width: 1px;
+  margin-left: 1px;
+  fill: #dd616e;
+}
+
+.trash svg:hover {
+  fill: #dd616e;
 }
 
 .dDay {
@@ -69,5 +75,15 @@
   line-height: 18px;
   font-weight: 700;
   margin: 11px 16px 10px 5px;
+  color: #323232;
+}
+
+.smallDday {
+  width: 42px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  margin: 12px 10px 11px -5px;
   color: #323232;
 }

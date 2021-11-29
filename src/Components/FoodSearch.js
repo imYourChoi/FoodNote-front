@@ -16,7 +16,7 @@ const FoodSearch = (props) => {
       <div className="trash" onClick={props.onDeleteClick}>
         <FaTrashAlt />
       </div>
-      <div className="dDay">
+      <div className="smallDday">
         {diffDays >= 0 ? 'D+' + diffDays : 'D -' + Math.abs(diffDays)}
       </div>
 

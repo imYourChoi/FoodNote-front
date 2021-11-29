@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
 import FoodList from '../Components/FoodList';
 
-export default class List extends Component {
+class List extends Component {
   constructor(props) {
     super(props);
     this.retrieveFood = this.retrieveFood.bind(this);
     this.sortAddItems = this.sortAddItems.bind(this);
     this.sortDescItems = this.sortDescItems.bind(this);
     this.sortAscItems = this.sortAscItems.bind(this);
+    this.sortAbcItems = this.sortAbcItems.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    // this.handleRoute = this.handleRoute.bind(this);
     this.state = {
       items: [],
       order: 'Add',
@@ -25,7 +28,6 @@ export default class List extends Component {
 
   onDeleteClick(v) {
     console.log(v);
-    // console.log(this.state.items);
     api.deleteOne(v).then(() => this.retrieveFood());
   }
 
@@ -59,11 +61,6 @@ export default class List extends Component {
     const sortedItem = item.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
-    // console.log(item);
-    // console.log(v.context);
-    // this.setState({
-    //   items: this.items,
-    // });
     this.setState({
       items: sortedItem,
       order: 'Desc',
@@ -76,22 +73,29 @@ export default class List extends Component {
     const sortedItem = item.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });
-    // console.log(item);
-    // console.log(v.context);
-    // this.setState({
-    //   items: this.items,
-    // });
     this.setState({
       items: sortedItem,
       order: 'Asc',
     });
   }
 
+  sortAbcItems() {
+    const item = this.state.items;
+    console.log(item);
+    const sortedItem = item.sort();
+    console.log(sortedItem);
+    this.setState({
+      items: sortedItem,
+      order: 'Abc',
+    });
+  }
+
   render() {
     const { items } = this.state;
+    console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodList
-        key={v.id}
+        id={v._id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
@@ -121,6 +125,17 @@ export default class List extends Component {
                   onClick={this.sortAddItems}
                 >
                   추가순
+                </button>
+                <button
+                  type="button"
+                  className={
+                    this.state.order === 'Abc'
+                      ? 'clickedOrderButton'
+                      : 'orderButton'
+                  }
+                  onClick={this.sortAbcItems}
+                >
+                  가나다순
                 </button>
                 <button
                   type="button"
@@ -167,10 +182,18 @@ export default class List extends Component {
             ) : (
               foodItemEls
             )}
-            {/* </div> */}
+            <button
+              type="button"
+              className="addButton"
+              // onClick={() => this.handleRoute('/add')}
+            >
+              추가하기
+            </button>
           </div>
         </div>
       </>
     );
   }
 }
+
+export default withRouter(List);

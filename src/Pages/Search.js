@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 
 import * as api from '../api/api';
@@ -9,6 +10,8 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.retrieveFood = this.retrieveFood.bind(this);
+    this.updateFood = this.updateFood.bind(this);
+    // this.recommendWord = this.recommendWord.bind(this);
     this.onCategoryClick = this.onCategoryClick.bind(this);
     this.state = {
       allItems: [],
@@ -20,12 +23,12 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.retrieveFood();
+    this.updateFood();
   }
 
   onDeleteClick(v) {
     console.log(v);
-    // console.log(this.state.items);
-    api.deleteOne(v).then(() => this.retrieveFood());
+    api.deleteOne(v).then(() => this.updateFood());
   }
 
   onCategoryClick(v) {
@@ -61,9 +64,25 @@ export default class Search extends Component {
       .catch((e) => console.log(e));
   }
 
+  updateFood() {
+    api
+      .getAll()
+      .then((response) => {
+        this.setState({
+          items: response.data,
+        });
+      })
+      .catch((e) => console.log(e));
+  }
+
+  // recommendWord() {
+  //   const list = this.state.allItems;
+  // }
+
   render() {
-    const { items, searchWord, category } = this.state;
-    const foodItemEls = items.map((v) => (
+    const { allItems, items, searchWord, category } = this.state;
+    console.log(allItems);
+    const foodItemEls = (items.length === 0 ? allItems : items).map((v) => (
       <FoodSearch
         key={v.id}
         restaurant={v.restaurant}
@@ -86,12 +105,12 @@ export default class Search extends Component {
                 <div className="subtitle">검색 창</div>
                 <input
                   type="text"
-                  className="textInput"
+                  className="smallTextInput"
                   placeholder="키워드를 입력해 주세요."
                   value={searchWord}
-                  onChange={(v) =>
-                    this.setState({ searchWord: v.target.value })
-                  }
+                  onChange={(v) => {
+                    this.setState({ searchWord: v.target.value });
+                  }}
                 />
                 <div className="categoryButtonRow">
                   <div className="categoryText">분류 :</div>
@@ -115,11 +134,12 @@ export default class Search extends Component {
                   >
                     음식
                   </button>
+                  <div className="line"> </div>
                   <button
                     className="searchButton"
                     onClick={() => this.onSearchClick(searchWord)}
                   >
-                    검색하기
+                    {searchWord !== '' ? '검색하기' : '전체보기'}
                   </button>
                 </div>
                 <div className="subtitle">추천 키워드</div>

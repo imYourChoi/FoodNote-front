@@ -136,21 +136,20 @@ a {
 }
 
 .fc .fc-daygrid-day.fc-day-today {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   font-weight: 700;
-  border-radius: 10px;
-  box-shadow: inset 0px 2px 2px -1px rgba(0, 0, 0, 0.25);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .fc .fc-highlight {
-  width: 42px;
-  height: 41px;
+  width: 36px;
+  height: 36px;
   position: absolute;
   background: rgba(230, 226, 175, 1);
-  top: -5px;
-  left: -0.5px;
-  border-radius: 10px;
-  box-shadow: inset 0px 2px 2px -1px rgba(0, 0, 0, 0.25);
+  top: -2px;
+  left: 3px;
+  border-radius: 8px;
 }
 
 .fc .fc-day-disabled {

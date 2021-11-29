@@ -17,7 +17,7 @@ const Add = () => {
     '',
   );
   const [message, setMessage] = useState('');
-  const [messageColor, setMessageColor] = useState('#dd616e');
+  const [messageColor, setMessageColor] = useState('#DD616E');
   console.log(addDate);
 
   const history = useHistory();

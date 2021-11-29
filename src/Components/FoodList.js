@@ -3,6 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import './FoodItem.css';
 
 const FoodItem = (props) => {
+  console.log(props);
   const today = new Date();
   const visitDate = new Date(props.date);
   // console.log(day.toISOString().split('T')[0]);
