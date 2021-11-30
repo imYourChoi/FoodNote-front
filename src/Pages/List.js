@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
 import FoodList from '../Components/FoodList';
+// import Modal from '../Components/Modal';
 
 class List extends Component {
   constructor(props) {
@@ -15,10 +17,13 @@ class List extends Component {
     this.sortAscItems = this.sortAscItems.bind(this);
     this.sortAbcItems = this.sortAbcItems.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     // this.handleRoute = this.handleRoute.bind(this);
     this.state = {
       items: [],
       order: 'Add',
+      modalIsOpen: false,
     };
   }
 
@@ -32,6 +37,14 @@ class List extends Component {
 
   onDeleteClick(v) {
     api.deleteOne(v).then(() => this.retrieveFood());
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   retrieveFood() {
@@ -90,7 +103,8 @@ class List extends Component {
   }
 
   render() {
-    const { items } = this.state;
+    Modal.setAppElement('body');
+    const { items, modalIsOpen } = this.state;
     const foodItemEls = items.map((v) => (
       <FoodList
         id={v._id}
@@ -98,6 +112,9 @@ class List extends Component {
         food={v.food}
         date={v.date}
         onDeleteClick={() => this.onDeleteClick(v)}
+        modalIsOpen={modalIsOpen}
+        openModal={this.openModal}
+        closeModal={this.closeModal}
       />
     ));
     return (
@@ -109,7 +126,6 @@ class List extends Component {
         />
         <div className="bodyContainer">
           <div className="content">
-            {/* <div className="d-flex"> */}
             <div className="row">
               <div className="subtitle">목록</div>
               <div className="buttonGroup">

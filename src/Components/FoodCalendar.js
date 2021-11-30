@@ -1,7 +1,7 @@
 import React from 'react';
 import './FoodItem.css';
 
-const FoodList2 = (props) => {
+const FoodCalendar = (props) => {
   const today = new Date();
   const visitDate = new Date(props.date);
   // console.log(day.toISOString().split('T')[0]);
@@ -19,4 +19,4 @@ const FoodList2 = (props) => {
   );
 };
 
-export default FoodList2;
+export default FoodCalendar;

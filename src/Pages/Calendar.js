@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
-import FoodList2 from '../Components/FoodList2';
+import FoodCalendar from '../Components/FoodCalendar';
 import ListCalendar from '../Components/ListCalendar';
 
 import './Page.css';
@@ -21,6 +21,7 @@ class Calendar extends Component {
       allItems: [],
       items: [],
       date: '',
+      event: [],
     };
   }
 
@@ -50,9 +51,20 @@ class Calendar extends Component {
     api
       .getAll()
       .then((response) => {
-        this.setState({
-          allItems: response.data,
-        });
+        this.setState(
+          {
+            allItems: response.data,
+          },
+          () => {
+            const newEvent = [];
+            const getWords = (item) => {
+              console.log(item);
+              newEvent.push({ title: item.restaurant, start: item.date });
+            };
+            this.state.allItems.forEach(getWords);
+            this.setState({ event: newEvent });
+          },
+        );
       })
       .catch((e) => console.log(e));
   }
@@ -69,16 +81,18 @@ class Calendar extends Component {
   }
 
   render() {
-    const { allItems, items, date } = this.state;
-    // items.length === 0 ? allItems : items;
+    const { items, date } = this.state;
     const foodItemEls = items.map((v) => (
-      <FoodList2
+      <FoodCalendar
         key={v.id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
       />
     ));
+
+    console.log(this.state.event);
+
     return (
       <>
         <Header selected="calendar" />
@@ -92,7 +106,10 @@ class Calendar extends Component {
               <div className="column">
                 <div className="subtitle">달력</div>
                 <div className="calendar">
-                  <ListCalendar setDate={this.setDate} />
+                  <ListCalendar
+                    setDate={this.setDate}
+                    event={this.state.event}
+                  />
                 </div>
                 <div className="calendarButtonRow">
                   <button
