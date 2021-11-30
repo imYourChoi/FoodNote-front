@@ -52,8 +52,24 @@
   margin: 14px auto 11px 5px;
 }
 
+.mod {
+  height: 16px;
+  margin: 12px 0px 11px auto;
+}
+
+.mod svg {
+  margin-top: -10px;
+  fill: #a7a37e;
+  height: 12px;
+  cursor: pointer;
+}
+
+.mod svg:hover {
+  fill: var(--prime-color);
+}
+
 .trash {
-  margin: 12px 10px 11px auto;
+  margin: 12px 10px 11px 5px;
   height: 16px;
 }
 

@@ -6,6 +6,8 @@ import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
 import FoodList from '../Components/FoodList';
+import '../Components/Modal.css';
+import './Page.css';
 // import Modal from '../Components/Modal';
 
 class List extends Component {
@@ -17,13 +19,20 @@ class List extends Component {
     this.sortAscItems = this.sortAscItems.bind(this);
     this.sortAbcItems = this.sortAbcItems.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    // this.handleRoute = this.handleRoute.bind(this);
+    this.setModalInfo = this.setModalInfo.bind(this);
+    this.onEditRestaurant = this.onEditRestaurant.bind(this);
+    this.onEditFood = this.onEditFood.bind(this);
+
     this.state = {
       items: [],
       order: 'Add',
       modalIsOpen: false,
+      modalInfo: [],
+      editRestaurant: '',
+      editFood: '',
     };
   }
 
@@ -39,8 +48,36 @@ class List extends Component {
     api.deleteOne(v).then(() => this.retrieveFood());
   }
 
-  openModal() {
+  onEditClick(id) {
+    api
+      .update(id, {
+        restaurant: this.state.editRestaurant,
+        food: this.state.editFood,
+      })
+      .then(() => api.getAll())
+      .then((response) => {
+        this.setState({
+          items: response.data,
+        });
+      })
+      .catch((e) => console.log(e));
+  }
+
+  onEditRestaurant(nextState) {
+    this.setState({ editRestaurant: nextState });
+  }
+
+  onEditFood(nextState) {
+    this.setState({ editFood: nextState });
+  }
+
+  setModalInfo(nextState) {
+    this.setState({ modalInfo: nextState });
+  }
+
+  openModal(p) {
     this.setState({ modalIsOpen: true });
+    this.setModalInfo(p);
   }
 
   closeModal() {
@@ -104,17 +141,26 @@ class List extends Component {
 
   render() {
     Modal.setAppElement('body');
-    const { items, modalIsOpen } = this.state;
+    const { items, modalIsOpen, modalInfo } = this.state;
     const foodItemEls = items.map((v) => (
       <FoodList
+        v={v}
         id={v._id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
+        items={items}
         onDeleteClick={() => this.onDeleteClick(v)}
         modalIsOpen={modalIsOpen}
         openModal={this.openModal}
         closeModal={this.closeModal}
+        modalInfo={modalInfo}
+        setModalInfo={this.setModalInfo}
+        onEditRestaurant={this.onEditRestaurant}
+        onEditFood={this.onEditFood}
+        onEditClick={this.onEditClick}
+        editRestaurant={this.state.editRestaurant}
+        editFood={this.state.editFood}
       />
     ));
     return (
