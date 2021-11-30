@@ -1,5 +1,4 @@
 /* eslint-disable prefer-destructuring */
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 
 import * as api from '../api/api';
@@ -14,6 +13,8 @@ export default class Search extends Component {
     this.updateFood = this.updateFood.bind(this);
     this.recommendWord = this.recommendWord.bind(this);
     this.onCategoryClick = this.onCategoryClick.bind(this);
+    this.checkItem = this.checkItem.bind(this);
+    this.enterkey = this.enterkey.bind(this);
     this.state = {
       allItems: [],
       items: [],
@@ -30,8 +31,13 @@ export default class Search extends Component {
   }
 
   onDeleteClick(v) {
-    console.log(v);
-    api.deleteOne(v).then(() => this.updateFood());
+    api
+      .deleteOne(v)
+      .then(() => api.getAll())
+      .then((response) => {
+        const item = response.data.filter(this.checkItem);
+        this.setState({ items: item });
+      });
   }
 
   onCategoryClick(v) {
@@ -43,17 +49,30 @@ export default class Search extends Component {
   }
 
   onSearchClick(word) {
-    const checkItem = (name) => {
-      if (this.state.category === '식당') {
-        return name.restaurant.includes(word);
-      }
-      if (this.state.category === '음식') {
-        return name.food.includes(word);
-      }
-      return name.food.includes(word) || name.restaurant.includes(word);
-    };
-    const item = this.state.allItems.filter(checkItem);
-    this.setState({ items: item });
+    api.getAll().then((response) => {
+      this.setState(
+        {
+          allItems: response.data,
+        },
+        () => {
+          const item = this.state.allItems.filter(this.checkItem);
+          this.setState({ items: item });
+        },
+      );
+    });
+  }
+
+  checkItem(name) {
+    if (this.state.category === '식당') {
+      return name.restaurant.includes(this.state.searchWord);
+    }
+    if (this.state.category === '음식') {
+      return name.food.includes(this.state.searchWord);
+    }
+    return (
+      name.food.includes(this.state.searchWord) ||
+      name.restaurant.includes(this.state.searchWord)
+    );
   }
 
   retrieveFood() {
@@ -105,6 +124,12 @@ export default class Search extends Component {
     // .catch((e) => console.log(e));
   }
 
+  enterkey() {
+    if (window.event.keyCode === 13) {
+      this.onSearchClick(this.state.searchWord);
+    }
+  }
+
   render() {
     const { allItems, items, searchWord, category } = this.state;
     const foodItemEls = (items.length === 0 ? allItems : items).map((v) => (
@@ -131,6 +156,7 @@ export default class Search extends Component {
                 <input
                   type="text"
                   className="smallTextInput"
+                  onKeyUp={this.enterkey}
                   placeholder="키워드를 입력해 주세요."
                   value={searchWord}
                   onChange={(v) => {
@@ -179,7 +205,10 @@ export default class Search extends Component {
                     <div
                       className="recWord"
                       onClick={(v) =>
-                        this.setState({ searchWord: v.target.innerText })
+                        this.setState(
+                          { searchWord: v.target.innerText },
+                          this.onSearchClick(searchWord),
+                        )
                       }
                     >
                       {item}

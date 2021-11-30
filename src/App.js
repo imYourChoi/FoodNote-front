@@ -15,11 +15,10 @@ const App = () => {
     <BrowserRouter>
       <div>
         <Switch>
-          <Route exact path={['/', '/list']} component={List} />
-          <Route exact path="/calendar" component={Calendar} />
-          <Route exact path="/add" component={Add} />
-          <Route exact path="/search" component={Search} />
-          <Route />
+          <Route exact path={['/', '/list']} component={List} props={history} />
+          <Route exact path="/calendar" component={Calendar} props={history} />
+          <Route exact path="/add" component={Add} props={history} />
+          <Route exact path="/search" component={Search} props={history} />
         </Switch>
       </div>
     </BrowserRouter>
