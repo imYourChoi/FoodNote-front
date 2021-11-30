@@ -16,7 +16,7 @@ class Calendar extends Component {
     this.retrieveFood = this.retrieveFood.bind(this);
     this.updateFood = this.updateFood.bind(this);
     this.setDate = this.setDate.bind(this);
-    // this.onDateClick = this.onDateClick.bind(this);
+    this.viewAll = this.viewAll.bind(this);
     this.state = {
       allItems: [],
       items: [],
@@ -32,10 +32,6 @@ class Calendar extends Component {
     this.props.history.push('/add');
   }
 
-  // onDateClick(nextState) {
-  //   this.setState(nextState);
-  // }
-
   setDate(nextState) {
     this.setState(nextState, () => {
       const checkItem = (item) => {
@@ -44,6 +40,10 @@ class Calendar extends Component {
       const item = this.state.allItems.filter(checkItem);
       this.setState({ items: item });
     });
+  }
+
+  viewAll() {
+    this.setState({ items: this.state.allItems, date: '전체 보기' });
   }
 
   retrieveFood() {
@@ -70,7 +70,8 @@ class Calendar extends Component {
 
   render() {
     const { allItems, items, date } = this.state;
-    const foodItemEls = (items.length === 0 ? allItems : items).map((v) => (
+    // items.length === 0 ? allItems : items;
+    const foodItemEls = items.map((v) => (
       <FoodList2
         key={v.id}
         restaurant={v.restaurant}
@@ -93,19 +94,66 @@ class Calendar extends Component {
                 <div className="calendar">
                   <ListCalendar setDate={this.setDate} />
                 </div>
-                <button
-                  type="button"
-                  className="addRouteButton"
-                  onClick={() => this.handleClick()}
-                >
-                  추가하기
-                </button>
+                <div className="calendarButtonRow">
+                  <button
+                    type="button"
+                    className="calendarButton"
+                    onClick={() => this.viewAll()}
+                  >
+                    전체보기
+                  </button>
+                  <button
+                    type="button"
+                    className="calendarButton"
+                    onClick={() => this.handleClick()}
+                  >
+                    추가하기
+                  </button>
+                </div>
               </div>
               <div className="column">
                 <div className="subtitle">
-                  {date === '' ? '날짜를 선택해주세요' : date}
+                  {date === '' ? '날짜를 선택해주세요' : '날짜 : ' + date}
                 </div>
-                {date === '' ? '' : foodItemEls}
+                {date === '' ? (
+                  <div
+                    style={{
+                      color: '#DD616E',
+                      width: '275px',
+                      height: '39px',
+                      borderRadius: '8px',
+                      // backgroundColor: '#eeeeee',
+                      borderStyle: 'solid',
+                      borderWidth: '1px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '10px 2px 11px 16px',
+                      // boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.25)',
+                    }}
+                  >
+                    날짜를 선택해주세요.
+                  </div>
+                ) : items.length === 0 ? (
+                  <div
+                    style={{
+                      color: '#DD616E',
+                      width: '275px',
+                      height: '39px',
+                      borderRadius: '8px',
+                      // backgroundColor: '#eeeeee',
+                      borderStyle: 'solid',
+                      borderWidth: '1px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '10px 2px 11px 16px',
+                      // boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.25)',
+                    }}
+                  >
+                    해당 날짜에 방문 기록이 없습니다.
+                  </div>
+                ) : (
+                  foodItemEls
+                )}
               </div>
             </div>
           </div>

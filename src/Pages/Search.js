@@ -48,7 +48,7 @@ export default class Search extends Component {
     }
   }
 
-  onSearchClick(word) {
+  onSearchClick() {
     api.getAll().then((response) => {
       this.setState(
         {
@@ -126,7 +126,7 @@ export default class Search extends Component {
 
   enterkey() {
     if (window.event.keyCode === 13) {
-      this.onSearchClick(this.state.searchWord);
+      this.onSearchClick();
     }
   }
 
@@ -194,7 +194,7 @@ export default class Search extends Component {
                   <div className="line"> </div>
                   <button
                     className="searchButton"
-                    onClick={() => this.onSearchClick(searchWord)}
+                    onClick={() => this.onSearchClick()}
                   >
                     {searchWord !== '' ? '검색하기' : '전체보기'}
                   </button>
@@ -207,7 +207,7 @@ export default class Search extends Component {
                       onClick={(v) =>
                         this.setState(
                           { searchWord: v.target.innerText },
-                          this.onSearchClick(searchWord),
+                          this.onSearchClick(),
                         )
                       }
                     >
@@ -222,7 +222,7 @@ export default class Search extends Component {
                   <div
                     style={{
                       color: '#DD616E',
-                      width: '310px',
+                      width: '336px',
                       height: '39px',
                       borderRadius: '8px',
                       // backgroundColor: '#eeeeee',
