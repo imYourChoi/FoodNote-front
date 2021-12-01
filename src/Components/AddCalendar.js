@@ -25,9 +25,8 @@ const Calendar = (props) => {
       dateClick={handleDateClick}
       datesSet={handleDateSet}
       selectable
-      // unselectAuto={false}
+      unselectAuto={false}
       showNonCurrentDates={false}
-      // contentHeight="60px"
     />
   );
 };

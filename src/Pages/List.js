@@ -228,13 +228,9 @@ class List extends Component {
                   width: '100%',
                   height: '39px',
                   borderRadius: '8px',
-                  // backgroundColor: '#eeeeee',
-                  // borderStyle: 'solid',
-                  // borderWidth: '1px',
                   display: 'inline-flex',
                   alignItems: 'center',
                   padding: '10px 2px 11px 16px',
-                  // boxShadow: '0px 2px 2px -1px rgba(0, 0, 0, 0.25)',
                 }}
               >
                 추가하신 방문 기록이 없습니다.

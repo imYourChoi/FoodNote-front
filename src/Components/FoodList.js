@@ -6,7 +6,6 @@ import './Modal.css';
 
 const FoodList = (props) => {
   const {
-    v,
     modalIsOpen,
     openModal,
     closeModal,
@@ -16,18 +15,18 @@ const FoodList = (props) => {
     editFood,
     setModalInfo,
   } = props;
-  const today = new Date();
+
   const countDay = (date) => {
+    const today = new Date();
     const visitDate = new Date(date);
     const diffTime = today - visitDate;
     return Math.floor(diffTime / (1000 * 60 * 60 * 24));
   };
   const diffDays = countDay(props.date);
-  // const visitDate = new Date(props.date);
-  // const diffTime = today - visitDate;
-  // const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const ModalDays = countDay(modalInfo.date);
-  const count = items.filter((x) => x.restaurant === props.restaurant).length;
+  const count = items.filter(
+    (x) => x.restaurant === modalInfo.restaurant,
+  ).length;
   const [errorMessage, setErrorMessage] = useState('');
   return (
     <div className="foodItem">
@@ -46,10 +45,8 @@ const FoodList = (props) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        // style={customStyles}
         className="Modal"
         overlayClassName="Overlay"
-        // contentLabel="Example Modal"
       >
         <div className="head">
           {modalInfo.restaurant}

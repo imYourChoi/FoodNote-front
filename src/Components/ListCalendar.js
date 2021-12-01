@@ -5,7 +5,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import './ListCalendar.css';
 
 const Calendar = (props) => {
-  //   console.log(props);
   const { setDate, event } = props;
   const handleDateClick = (arg) => {
     const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -31,7 +30,6 @@ const Calendar = (props) => {
         selectable
         unselectAuto={false}
         showNonCurrentDates={false}
-        // contentHeight="60px"
       />
     </div>
   );

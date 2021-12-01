@@ -11,10 +11,7 @@ import '../App.css';
 const Add = (props) => {
   const [addRestaurant, setAddRestaurant] = useState('');
   const [addFood, setAddFood] = useState('');
-  const [addDate, setAddDate] = useState(
-    // new Date().toISOString().split('T')[0],
-    '',
-  );
+  const [addDate, setAddDate] = useState('');
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('#DD616E');
   console.log(addDate);
