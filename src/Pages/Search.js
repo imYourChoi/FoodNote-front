@@ -114,10 +114,7 @@ export default class Search extends Component {
       };
       list.forEach(getWords);
       const shuffled = list.sort(() => 0.5 - Math.random());
-      const recs = shuffled.slice(
-        0,
-        Math.ceil(shuffled.length / 2) > 5 ? 5 : Math.ceil(shuffled.length / 2),
-      );
+      const recs = shuffled.slice(0, shuffled.length > 5 ? 5 : shuffled.length);
       recs.forEach(getOne);
       this.setState({ recommend: recs });
     });
