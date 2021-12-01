@@ -40,7 +40,7 @@ const FoodList = (props) => {
         <FaTrashAlt />
       </div>
       <div className="dDay">
-        {diffDays >= 0 ? 'D+' + diffDays : 'D -' + Math.abs(diffDays)}
+        {diffDays >= 0 ? 'D+' + diffDays : 'D-' + Math.abs(diffDays)}
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -56,7 +56,7 @@ const FoodList = (props) => {
         </div>
         <div className="modalContainer">
           <div className="modalDay">
-            {ModalDays >= 0 ? 'D+' + ModalDays : 'D -' + Math.abs(ModalDays)}
+            {ModalDays >= 0 ? 'D+' + ModalDays : 'D-' + Math.abs(ModalDays)}
           </div>
           <div className="text">총 방문 횟수 : {count}</div>
           <div className="text">먹은 음식 : {modalInfo.food}</div>

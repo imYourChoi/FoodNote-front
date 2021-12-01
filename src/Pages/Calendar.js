@@ -58,7 +58,6 @@ class Calendar extends Component {
           () => {
             const newEvent = [];
             const getWords = (item) => {
-              console.log(item);
               newEvent.push({ title: item.restaurant, start: item.date });
             };
             this.state.allItems.forEach(getWords);
@@ -90,8 +89,6 @@ class Calendar extends Component {
         date={v.date}
       />
     ));
-
-    console.log(this.state.event);
 
     return (
       <>

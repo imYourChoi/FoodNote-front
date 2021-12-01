@@ -142,6 +142,7 @@ class List extends Component {
   render() {
     Modal.setAppElement('body');
     const { items, modalIsOpen, modalInfo } = this.state;
+    console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodList
         v={v}
