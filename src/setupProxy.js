@@ -8,7 +8,8 @@ module.exports = (app) => {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://127.0.0.1:8080/',
+      // target: 'http://127.0.0.1:8080/',
+      target: 'http://ssal.sparcs.org:30084/',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
