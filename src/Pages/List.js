@@ -145,6 +145,7 @@ class List extends Component {
     console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodList
+        key={v._id}
         v={v}
         id={v._id}
         restaurant={v.restaurant}

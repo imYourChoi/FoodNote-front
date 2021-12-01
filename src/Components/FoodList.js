@@ -49,7 +49,7 @@ const FoodList = (props) => {
         overlayClassName="Overlay"
       >
         <div className="head">
-          {modalInfo.restaurant}
+          <div className="headText">{modalInfo.restaurant}</div>
           <button className="close" onClick={closeModal}>
             <FaTimes />
           </button>
