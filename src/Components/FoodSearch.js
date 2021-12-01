@@ -10,9 +10,9 @@ const FoodSearch = (props) => {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   return (
     <div className="foodSearchResult">
-      <div className="restaurant">{props.restaurant}</div>
+      <div className="searchRestaurant">{props.restaurant}</div>
       <div className="date">{props.date}</div>
-      <div className="food"> / {props.food}</div>
+      <div className="searchFood"> / {props.food}</div>
       <div className="trash" onClick={props.onDeleteClick}>
         <FaTrashAlt />
       </div>
