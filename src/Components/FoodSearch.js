@@ -17,7 +17,10 @@ const FoodSearch = (props) => {
         <FaTrashAlt />
       </div>
       <div className="smallDday">
-        {diffDays >= 0 ? 'D+' + diffDays : 'D -' + Math.abs(diffDays)}
+        {/* {diffDays >= 0 ? 'D+' + diffDays : 'D-' + Math.abs(diffDays)} */}
+        {diffDays >= 0
+          ? '+ ' + diffDays + '일'
+          : '– ' + Math.abs(diffDays) + '일'}
       </div>
     </div>
   );
