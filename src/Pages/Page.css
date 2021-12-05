@@ -59,6 +59,7 @@
   padding: 25px 20px 15px 20px;
   box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  transition: 0.2s all;
 }
 
 .box svg {
@@ -66,6 +67,29 @@
   font-size: 45px;
   margin-left: 8px;
   margin-bottom: 20px;
+  transition: 0.2s all;
+}
+
+.box:hover {
+  background-color: var(--prime-color);
+}
+
+.box:hover .boxText,
+.box:active .boxText {
+  color: #ffffff;
+
+  text-decoration-color: #ffffff;
+}
+
+.box:hover svg,
+.box:active svg {
+  fill: #ffffff;
+}
+
+.box:active {
+  transform: scale(0.98);
+  background-color: #003232;
+  color: #ffffff;
 }
 
 .boxText {
@@ -78,6 +102,7 @@
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
   text-decoration-color: rgba(4, 99, 128, 0.6);
+  transition: 0.2s all;
 }
 
 .boxSpace {
