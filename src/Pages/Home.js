@@ -67,7 +67,7 @@ class Home extends Component {
     let sortedItem = item.sort((a, b) => {
       return new Date(a.createdAt) - new Date(b.createdAt);
     });
-    sortedItem = sortedItem.slice(0, 2);
+    sortedItem = sortedItem.slice(0, 3);
     this.setState({
       recitems: sortedItem,
     });
@@ -78,7 +78,7 @@ class Home extends Component {
     let sortedItem = item.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
-    sortedItem = sortedItem.slice(0, 2);
+    sortedItem = sortedItem.slice(0, 3);
     this.setState({
       olditems: sortedItem,
     });
