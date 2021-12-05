@@ -80,7 +80,7 @@ const Header = (props) => {
         <Nav.Link href="/search">검색하기</Nav.Link>
       </>
     );
-  else
+  else if (selected === 'search')
     links = (
       <>
         <Dropdown>
@@ -102,6 +102,32 @@ const Header = (props) => {
         </Dropdown>
         <Nav.Link href="/add">추가하기</Nav.Link>
         <Nav.Link href="/search" className="selectedMenu">
+          검색하기
+        </Nav.Link>
+      </>
+    );
+  else
+    links = (
+      <>
+        <Dropdown>
+          <Dropdown.Toggle
+            bsPrefix="p"
+            variant="link"
+            className="unselectedMenu navBut"
+          >
+            방문 기록
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/list" className="unselectedItem">
+              방문 기록: <b>리스트</b>
+            </Dropdown.Item>
+            <Dropdown.Item href="/calendar" className="unselectedItem">
+              방문 기록: <b>달력</b>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Nav.Link href="/add">추가하기</Nav.Link>
+        <Nav.Link href="/search" className="unselectedMenu">
           검색하기
         </Nav.Link>
       </>
