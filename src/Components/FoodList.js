@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FaTrashAlt, FaInfoCircle, FaTimes } from 'react-icons/fa';
-import './FoodItem.css';
+import './Food.css';
 import './Modal.css';
 
 const FoodList = (props) => {

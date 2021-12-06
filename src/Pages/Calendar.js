@@ -5,7 +5,7 @@ import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
 import FoodCalendar from '../Components/FoodCalendar';
-import ListCalendar from '../Components/ListCalendar';
+import CalendarComp from '../Components/Calendar';
 
 import './Page.css';
 import '../App.css';
@@ -103,7 +103,7 @@ class Calendar extends Component {
               <div className="column">
                 <div className="subtitle">달력</div>
                 <div className="calendar">
-                  <ListCalendar
+                  <CalendarComp
                     setDate={this.setDate}
                     event={this.state.event}
                   />

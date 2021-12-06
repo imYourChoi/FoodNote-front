@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import './FoodItem.css';
+import './Food.css';
 
 const FoodSearch = (props) => {
   const today = new Date();

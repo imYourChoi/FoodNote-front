@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import * as api from '../api/api';
 import Header from '../Components/Header';
 import Background from '../Components/Background';
-import AddCalendar from '../Components/AddCalendar';
+import CalendarAdd from '../Components/CalendarAdd';
 
 import './Page.css';
 import '../App.css';
@@ -93,7 +93,7 @@ const Add = (props) => {
             <div className="column">
               <div className="subtitle">날짜</div>
               <div className="calendar">
-                <AddCalendar addDate={addDate} setAddDate={setAddDate} />
+                <CalendarAdd addDate={addDate} setAddDate={setAddDate} />
               </div>
             </div>
           </div>

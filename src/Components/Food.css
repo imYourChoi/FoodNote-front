@@ -44,6 +44,16 @@
   text-overflow: ellipsis;
 }
 
+.smallRestaurant {
+  margin: 11px 0px 10px 16px;
+  font-size: 16px;
+  line-height: 18px;
+  color: #323232;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .searchRestaurant {
   margin: 11px 0px 10px 16px;
   font-size: 16px;

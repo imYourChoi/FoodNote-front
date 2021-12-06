@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-import './FoodItem.css';
+import React from 'react';
+import './Food.css';
 
 const FoodHome = (props) => {
-  const countDay = (date) => {
-    const today = new Date();
-    const visitDate = new Date(date);
-    const diffTime = today - visitDate;
-    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  };
-  const diffDays = countDay(props.date);
   return (
     <div className="foodItem">
       <div className="restaurant">{props.restaurant}</div>
