@@ -170,11 +170,11 @@ class Home extends Component {
             {/* </div> */}
             <div className="row">
               <div className="box" onClick={() => this.handleList()}>
-                <FaRegCalendarAlt />
+                <FaClipboardList />
                 <div className="boxText">리스트 보기</div>
               </div>
               <div className="box" onClick={() => this.handleCalendar()}>
-                <FaClipboardList />
+                <FaRegCalendarAlt />
                 <div className="boxText">달력 보기</div>
               </div>
               <div className="box" onClick={() => this.handleAdd()}>
