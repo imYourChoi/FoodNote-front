@@ -92,7 +92,7 @@ class Home extends Component {
     const { recitems, olditems } = this.state;
     const recFoodItemEls = recitems.map((v) => (
       <FoodHome
-        key={v.id}
+        key={v._id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
@@ -101,7 +101,7 @@ class Home extends Component {
 
     const oldFoodItemEls = olditems.map((v) => (
       <FoodHome
-        key={v.id}
+        key={v._id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
@@ -129,9 +129,12 @@ class Home extends Component {
                       width: '100%',
                       height: '39px',
                       borderRadius: '8px',
+                      borderStyle: 'solid',
+                      borderWidth: '1px',
                       display: 'inline-flex',
                       alignItems: 'center',
                       padding: '10px 2px 11px 16px',
+                      marginBottom: '12px',
                     }}
                   >
                     추가하신 방문 기록이 없습니다.
@@ -149,9 +152,12 @@ class Home extends Component {
                       width: '100%',
                       height: '39px',
                       borderRadius: '8px',
+                      borderStyle: 'solid',
+                      borderWidth: '1px',
                       display: 'inline-flex',
                       alignItems: 'center',
                       padding: '10px 2px 11px 16px',
+                      marginBottom: '12px',
                     }}
                   >
                     추가하신 방문 기록이 없습니다.

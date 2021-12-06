@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const backAddress = process.env.REACT_APP_API_URL;
 
-console.log(backAddress);
-
 export const add = (data) => {
   axios.post(`${backAddress}/food`, {
     restaurant: data.restaurant,

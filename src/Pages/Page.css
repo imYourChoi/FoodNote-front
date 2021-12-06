@@ -77,7 +77,6 @@
 .box:hover .boxText,
 .box:active .boxText {
   color: #ffffff;
-
   text-decoration-color: #ffffff;
 }
 
@@ -93,7 +92,6 @@
 }
 
 .boxText {
-  /* color: #002f2f; */
   color: var(--prime-color);
   font-size: 16px;
   line-height: 22px;

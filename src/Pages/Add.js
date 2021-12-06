@@ -14,7 +14,6 @@ const Add = (props) => {
   const [addDate, setAddDate] = useState('');
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('#DD616E');
-  console.log(addDate);
 
   const { history } = props;
   const handleRoute = (path) => {

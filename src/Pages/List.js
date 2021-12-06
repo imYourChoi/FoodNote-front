@@ -81,7 +81,7 @@ class List extends Component {
   }
 
   closeModal() {
-    this.setState({ modalIsOpen: false });
+    this.setState({ modalIsOpen: false, editFood: '', editRestaurant: '' });
   }
 
   retrieveFood() {
@@ -142,7 +142,6 @@ class List extends Component {
   render() {
     Modal.setAppElement('body');
     const { items, modalIsOpen, modalInfo } = this.state;
-    console.log(items);
     const foodItemEls = items.map((v) => (
       <FoodList
         key={v._id}

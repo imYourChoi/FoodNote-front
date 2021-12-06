@@ -83,7 +83,7 @@ class Calendar extends Component {
     const { items, date } = this.state;
     const foodItemEls = items.map((v) => (
       <FoodCalendar
-        key={v.id}
+        key={v._id}
         restaurant={v.restaurant}
         food={v.food}
         date={v.date}
